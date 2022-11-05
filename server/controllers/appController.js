@@ -1,7 +1,7 @@
-const db = require('../models/dbModel.js');
+const db = require("../models/dbModel.js");
 
 const baseError = {
-  message: 'An error occured',
+  message: "An error occured",
   status: 401,
 };
 
