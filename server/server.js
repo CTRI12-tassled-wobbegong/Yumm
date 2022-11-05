@@ -3,17 +3,20 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser());
-console.log(process.env.NODE_ENV);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const appRouter = require('./routes/appRouter');
+app.use('/api', appRouter);
+
 if (process.env.NODE_ENV === 'production') {
-  console.log(process.env.NODE_ENV);
   app.use('/build', express.static(path.join(__dirname, '../build')));
   app.get('/', (req, res) => {
     return res.status(200).sendFile(path.join(__dirname, '../build/index.html'));
   });
 }
+
+app.use((req, res) => res.status(404).send("This is not the page you're looking for..."));
 
 // Global error handler
 app.use((err, req, res, next) => {
