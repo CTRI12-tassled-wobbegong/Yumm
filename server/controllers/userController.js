@@ -2,6 +2,18 @@ const db = require('../models/userModel');
 
 const userController = {};
 
+const createErr = (errInfo) => {
+  const { method, type, err } = errInfo;
+  return {
+    log: `controller.${method} ${type}: ERROR : 
+        ${typeof err === "object" ? JSON.stringify(err) : err}`,
+    message: {
+      err: `Error occured in userController.${method}`,
+    },
+    status: type,
+  };
+};
+
 /**
  * getAllUsers - retrieve all users from the database and stores it into res.locals
  * before moving on to next middleware.
