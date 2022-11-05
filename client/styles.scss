@@ -1,0 +1,111 @@
+
+$neutral: #e2e0e0;
+$lightneutral: #ececec;
+$bright: #af3735;
+$accentwarm: #ec775f;
+$accentcool: #95c4c2;
+body {
+  background-color: $neutral;
+}
+
+/*
+LOGIN PAGE
+*/
+.login {
+  h3{
+    font-family:'Libre Franklin', sans-serif;
+    font-weight: 100;
+    color: rgb(68, 68, 68);
+  }
+  h5{
+    font-family: 'M PLUS 1p', sans-serif;
+    color: rgb(80,80,80);
+  }
+
+  margin: 50px;
+  text-align: center;
+  padding-top: 40px;
+  background-color: $lightneutral;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 400px;
+  form {
+    padding:  50px 30px;
+    display:  flex;
+    flex-direction:  column;
+    align-items:  flex-start;
+    padding-bottom:  20px;
+    width:  300px;
+  }
+  label {
+    font-size:  12.5px;
+    color:  #000;
+    opacity:  .8;
+    font-weight:  400;
+  }
+  input{
+    font-size:  18px;
+    padding:  20px 0px;
+    height:  56px;
+    border:  none;
+    border-bottom:  solid 1px rgba(0,0,0,.1);
+    background: $lightneutral;
+    width:  320px;
+    box-sizing:  border-box;
+    transition:  all .3s linear;
+    color:  #000;
+    font-weight:  400;
+    &:focus {
+      border-bottom:  solid 2px $accentcool;
+      outline: 0;
+      box-shadow:  0 2px 6px -8px rgba($bright, .45);
+    }
+  }
+  button {
+    -webkit-appearance:  none;
+    width:  auto;
+    min-width:  100px;
+    border-radius:  24px;
+    text-align:  center;
+    padding:  15px 40px;
+    margin-top:  5px;
+    background-color: $bright;
+    color:  #fff;
+    font-size:  14px;
+    margin-left:  auto;
+    font-weight:  500;
+    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13);
+    border:  none;
+    transition:  all .3s ease;
+    outline: 0;
+    &:hover {
+      transform:  translateY(-3px);
+      box-shadow:  0 2px 6px -1px rgba($bright, .65);
+      &:active {
+        transform:  scale(.99);
+      }
+    }
+  }
+}
+
+// Header and Footer
+.header{
+  h1 {
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 200;
+  }
+  display: inline-flex;
+  font-family: 'M PLUS 1p', sans-serif;
+  background-color: $accentcool;
+  width: 100%;
+}
+.footer{
+  display: inline-flex;
+  font-family: 'M PLUS 1p', sans-serif;
+  color: rgb(101, 101, 101);
+  background-color: $accentcool;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
