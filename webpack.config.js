@@ -1,32 +1,30 @@
-const path = require("path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: "./client/index.js",
+  entry: './client/index.js',
 
   output: {
-    path: path.join(__dirname, "./build/"),
-    filename: "bundle.js",
-    publicPath: "/build",
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
+    publicPath: '/build',
   },
 
   plugins: [
     new HTMLWebpackPlugin({
-      template: "./client/index.html",
+      template: './client/index.html',
     }),
   ],
 
   devServer: {
     static: {
-      directory: path.resolve(__dirname, "/client/index.html"),
-      publicPath: '/*'
+      directory: path.resolve(__dirname, 'build'),
+      publicPath: '/*',
     },
-    port: 8080,
     proxy: {
-      "/api": "http://localhost:3000",
+      '/api': 'http://localhost:3000',
     },
-    watchFiles: ["client/**"],
   },
 
   module: {
@@ -34,21 +32,21 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
+          presets: ['@babel/preset-env', '@babel/preset-react'],
         },
       },
 
       {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
 
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        use: ["file-loader"],
+        use: ['file-loader'],
       },
     ],
   },
