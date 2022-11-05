@@ -1,4 +1,4 @@
-const Todo = require("../../models/userModel.js");
+const db = require("../models/dbModel.js");
 
 const baseError = {
   message: "An error occured",
