@@ -20,10 +20,11 @@ module.exports = {
   devServer: {
     static: {
       directory: path.resolve(__dirname, "/client/index.html"),
+      publicPath: '/*'
     },
     port: 8080,
     proxy: {
-      "/**": "http://localhost:3000",
+      "/api": "http://localhost:3000",
     },
     watchFiles: ["client/**"],
   },
