@@ -17,15 +17,4 @@ function App() {
   );
 }
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <Signup/>
-//         <h1>HELLO</h1>
-//       </div>
-//     );
-//   }
-// }
-
 export default App;
