@@ -18,23 +18,25 @@ postController.getAllPosts = (req, res, next) => {
       })
     );
 };
+
 //CREATE POST
 postController.createPost = (req, res, next) => {
-  const properties = ["date", "description", "category", "cook_time", "image"];
+  //const properties = ["date", "description", "category", "cook_time", "image"];
   //const values = [];
   //   for (const property of properties) {
   //     values.push(req.body[property]);
   //   }
-  const values = ["1-1", "food", "veggie", "2mins", "fff"];
-  console.log(values);
+  const values = ["1", "1999-01-08", "food", "veggie", "2 mins", "fff"];
+  // console.log(values);
   const query = `
-    INSERT INTO public.post (date, description, category, cook_time, image)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO public.post (user_id, date, description, category, cook_time, image)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *
     `;
   db.query(query, values)
     .then((data) => {
       console.log(data);
+      res.locals = data.rows;
       return next();
     })
     .catch((err) => {
