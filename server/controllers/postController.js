@@ -21,11 +21,6 @@ postController.getAllPosts = (req, res, next) => {
 
 //CREATE POST
 postController.createPost = (req, res, next) => {
-  //const properties = ["date", "description", "category", "cook_time", "image"];
-  //const values = [];
-  //   for (const property of properties) {
-  //     values.push(req.body[property]);
-  //   }
   const values = ["1", "1999-01-08", "food", "veggie", "2 mins", "fff"];
   // console.log(values);
   const query = `
@@ -40,11 +35,21 @@ postController.createPost = (req, res, next) => {
       return next();
     })
     .catch((err) => {
-      console.log("Error caught");
+      console.log("Error caught in postController");
       return next(err);
     });
 };
 
 //DELETE POST
+postController.deletePost = (req, res, next) => {
+  const query = `
+    DELETE FROM post WHERE post_id = 3 AND user_id = 1
+  `;
+
+  db.query(query, function (err, result) {
+    if (err) throw err;
+    console.log("Deleted rows:", result.affectedRows);
+  });
+};
 
 module.exports = postController;

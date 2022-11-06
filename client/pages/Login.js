@@ -1,60 +1,57 @@
 import React from "react";
 import Header from "../components/Header.js";
-import Footer from '../components/Footer.js';
-import { redirect } from 'react-router-dom';
+import Footer from "../components/Footer.js";
+import { redirect } from "react-router-dom";
 
 function Login(props) {
-
-
-
-
   function submitData(event) {
-    const userInput = document.getElementById('userIn').value;
-    const userPassword = document.getElementById('passIn').value;
+    const userInput = document.getElementById("userIn").value;
+    const userPassword = document.getElementById("passIn").value;
 
-  //TODO: update/confirm end point
-    fetch('/checkforuser', {
-      method: 'POST',
+    //TODO: update/confirm end point
+    fetch("/checkforuser", {
+      method: "POST",
       headers: {
-        'Content-Type': 'Application/JSON',
+        "Content-Type": "Application/JSON",
       },
-      body: JSON.stringify({userInput, userPassword}),
+      body: JSON.stringify({ userInput, userPassword }),
     })
       .then((result) => {
         //TODO: do we need to have a response or return anything?
         if (res.status === 200) {
-          return redirect('/user');
+          return redirect("/user");
         }
-      //else if (password and/or username is invalid)
-      //send message to user that login failed
-        })
-      .catch((error) => console.log('ERROR: SubmitData post request:' + error))
+        //else if (password and/or username is invalid)
+        //send message to user that login failed
+      })
+      .catch((error) => console.log("ERROR: SubmitData post request:" + error));
   }
-//link to signup
-//navigate to sign up page
+  //link to signup
+  //navigate to sign up page
 
+  //button to submit with an onClick event
 
-//button to submit with an onClick event
-
-  return(
+  return (
     <div>
-      <Header/>
+      <Header />
       <div className="login">
-        <h3>Welcome to Food Social</h3>
-        <h5> Log in to be inspired to eat</h5>
+        <h3>Welcome to YUMM!!</h3>
+        <h5>Eat outside the box</h5>
         <form>
-            <label></label>
-            <input type='text' placeholder='Username' id='userIn'></input>
-            <label></label>
-            <input type='password' placeholder='Password' id='passIn'></input>
-            <p></p>
-            <button id='submitBtn' onClick={submitData}>Sign In</button>
+          <label></label>
+          <input type="text" placeholder="Username" id="userIn"></input>
+          <label></label>
+          <input type="password" placeholder="Password" id="passIn"></input>
+          <p></p>
+          <button id="submitBtn" onClick={submitData}>
+            Sign In
+          </button>
         </form>
       </div>
 
-      <Footer/>
+      <Footer />
     </div>
-  )
+  );
 }
 
 export default Login;
