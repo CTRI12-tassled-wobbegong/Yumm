@@ -1,4 +1,4 @@
-const db = require("../models/dbModel");
+const db = require('../models/dbModel');
 
 const postController = {};
 
@@ -11,45 +11,55 @@ postController.getAllPosts = (req, res, next) => {
       res.locals = data.rows;
       return next();
     })
-    .catch((e) =>
+    .catch((e) => {
       next({
-        log: "postController.getAllPosts: ERROR: " + e,
-        message: "postController.getAllPosts: ERROR: Database query issue",
-      })
-    );
+        log: 'postController.getAllPosts: ERROR: ' + e,
+        message: 'postController.getAllPosts: ERROR: Database query issue',
+      });
+    });
 };
 
 //CREATE POST
 postController.createPost = (req, res, next) => {
-  const values = ["1", "1999-01-08", "food", "veggie", "2 mins", "fff"];
-  // console.log(values);
   const query = `
-    INSERT INTO public.post (user_id, date, description, category, cook_time, image)
+    INSERT INTO public.post (poster_id, date, description, category, cook_time, image)
     VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *
     `;
+  const today = new Date();
+  const date = today.toString();
+  const values = [1, date, 'food2', 'veggie2', '4 mins', 'fff4'];
+
   db.query(query, values)
     .then((data) => {
-      console.log(data);
       res.locals = data.rows;
       return next();
     })
-    .catch((err) => {
-      console.log("Error caught in postController");
-      return next(err);
+    .catch((e) => {
+      next({
+        log: 'postController.createPost: ERROR: ' + e,
+        message: 'postController.createPost: ERROR: Database query issue',
+      });
     });
 };
 
 //DELETE POST
 postController.deletePost = (req, res, next) => {
   const query = `
-    DELETE FROM post WHERE post_id = 3 AND user_id = 1
+    DELETE FROM public.post WHERE (post_id) = ($1);
   `;
-
-  db.query(query, function (err, result) {
-    if (err) throw err;
-    console.log("Deleted rows:", result.affectedRows);
-  });
+  const values = [4];
+  db.query(query, values)
+    .then((data) => {
+      res.locals = data.rowCount;
+      return next();
+    })
+    .catch((e) => {
+      next({
+        log: 'postController.deletePost: ERROR: ' + e,
+        message: 'postController.deletePost: ERROR: Database query issue',
+      });
+    });
 };
 
 module.exports = postController;
