@@ -8,7 +8,7 @@ function Post(props) {
       <img src={props.img} />
       <span className='tag'>Cook Time: {props.cook_time}</span>
       <div className='post-body'>{props.description}</div>
-      <div className='chef'>Cooked by {props.poster_id}</div>
+      <div className='chef'>Cooked by {props.poster_name}</div>
     </div>
   )
 }

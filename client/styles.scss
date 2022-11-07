@@ -16,6 +16,7 @@ body {
   background-repeat: no-repeat;
   background-image: url(https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
   background-position: 0in;
+  position: absolute;
 }
 
 /*
@@ -102,19 +103,6 @@ LOGIN PAGE
   }
 }
 
-// Header and Footer
-// .header {
-//   h1 {
-//     font-family: "Libre Franklin", sans-serif;
-//     font-weight: 200;
-//   }
-//   display: inline-flex;
-//   font-family: "M PLUS 1p", sans-serif;
-//   background-color: $accentcool;
-//   width: 100%;
-
-//   top: 0;
-// }
 .footer {
   display: inline-flex;
   font-family: "Open Sans Regular";
@@ -214,16 +202,26 @@ USER PAGE
   input{
     margin: 10px;
     height: 35px;
-    width: 10em;
-    border-radius: 10px;
+    width: 12em;
+    padding-left: 10px;
+    border-radius: 12px;
     border: solid 1px $accentwarm;
+  }
+  input:focus {
+    border: solid 2px $bright;
+    outline: 0;
+  }
+  ul{
+    margin-top: 5px;
   }
 }
 
 .postContainer {
+  margin-left: 20px;
   margin-top: 40px;
   display: inline-flex;
   flex-wrap: wrap;
+
 }
 
 .post {
@@ -266,4 +264,51 @@ USER PAGE
   margin-left: 30px;
   margin-bottom: 15px;
   color: $bright;
+}
+
+.createP{
+  margin-left: 50px;
+  margin-top: 20px;
+  background-color: $bright;
+  padding: 10px;
+  border: solid 1px $accentcool;
+  color: rgb(39, 39, 39);
+  border-radius: 10px;
+  font-family: "Libre Franklin", sans-serif;
+}
+.newPost {
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px;
+  width: 250px;
+  height: 400px;
+  background-color: rgb(246, 246, 246);
+  display: block;
+  font-family: Helvetica;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form{
+  display: block;
+  margin-left: 4px;
+  input{
+    border-radius: 10px;
+    width: 240px;
+    padding-left: 5px;
+    height: 30px;
+  }
+  button {
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: $accentcool;
+    border: 1px solid darkgray;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+#descriptionBox{
+  height: 80px;
 }

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import NavBar from '../components/NavBar.js';
 import Post from '../components/Post.js';
+import CreatePost from '../components/CreatePost.js';
 
 
 function User(props) {
   // store data for posts in an array
   const [posts, setPosts] = useState([]);
+  const [modal, setModal] = useState(false);
 
 //change of state shouldtrigger posting of state components
 
@@ -24,11 +26,12 @@ useEffect(() => {
     let resultArr = []
     for (let i = 0; i < arrOfObjs.length; i++) {
       resultArr.push(<Post
-        poster_id={arrOfObjs[i].poster_id}
+        poster_name={arrOfObjs[i].poster_name}
         date={arrOfObjs[i].date}
         description={arrOfObjs[i].description}
         category={arrOfObjs[i].category}
         cook_time={arrOfObjs[i].cook_time}
+        date={arrOfObjs[i].date}
         img={arrOfObjs[i].image}
         />)
     }
@@ -38,8 +41,6 @@ useEffect(() => {
     console.log('ERROR: In the fetch request for receiving posts ', + err)
   })
 }, [])
-
-
 
 // function createPosts() {
 //   let postArr = [];
@@ -53,10 +54,18 @@ useEffect(() => {
 // }
 // const thingsToPost = createPosts();
 
+function displayModal() {
+  setModal(!modal);
+  console.log('modal changed')
+
+}
+
     //create post component will need to be returned too
   return(
     <>
       <NavBar />
+      <button className='createP' onClick={displayModal}>Add Your Meal</button>
+      <CreatePost show={modal} />
       <div className="postContainer">
         {posts}
       </div>
