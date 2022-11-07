@@ -4,7 +4,7 @@ const friendController = {};
 
 //CREATE - ADD FRIEND
 friendController.createFriend = (req, res, next) => {
-  const values = [1, 4];
+  const values = [req.body.user1_id, req.body.user2_id];
   const query1 = `
     SELECT * FROM public.friend WHERE (user1_id) = ($1) AND (user2_id) = ($2);
     `;
@@ -46,7 +46,7 @@ friendController.deleteFriend = (req, res, next) => {
   const query = `
   DELETE FROM public.friend WHERE (friend_id) = ($1);
 `;
-  const values = [12];
+  const values = [req.body.friend_id];
   db.query(query, values)
     .then((data) => {
       res.locals = data.rowCount;
