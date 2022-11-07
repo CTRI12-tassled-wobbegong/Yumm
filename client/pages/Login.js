@@ -26,6 +26,12 @@ function Login(props) {
       })
       .catch((error) => console.log("ERROR: SubmitData post request:" + error));
   }
+
+  function googleLogin() {
+    fetch("/auth/login/federated/google")
+      .then((data) => console.log(data))
+      .catch((error) => console.log("google login error!!!"));
+  }
   //link to signup
   //navigate to sign up page
 
@@ -46,6 +52,15 @@ function Login(props) {
           <button id="submitBtn" onClick={submitData}>
             Sign In
           </button>
+          {/* <a className="button google" onClick={googleLogin}>
+            Sign in with Google
+          </a> */}
+          <a
+            className="button google"
+            href="/login/federated/accounts.google.com"
+          >
+            Sign in with Google
+          </a>
         </form>
       </div>
 

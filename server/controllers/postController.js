@@ -1,4 +1,4 @@
-const db = require('../models/dbModel');
+const db = require("../models/dbModel");
 
 const postController = {};
 
@@ -27,8 +27,8 @@ postController.getAllPosts = (req, res, next) => {
     })
     .catch((e) => {
       next({
-        log: 'postController.getAllPosts: ERROR: ' + e,
-        message: 'postController.getAllPosts: ERROR: Database query issue',
+        log: "postController.getAllPosts: ERROR: " + e,
+        message: "postController.getAllPosts: ERROR: Database query issue",
       });
     });
 };
@@ -38,11 +38,18 @@ postController.createPost = (req, res, next) => {
   const query = `
     INSERT INTO public.post (poster_id, date, description, category, cook_time, image)
     VALUES ($1, $2, $3, $4, $5, $6)
-    RETURNING *
+    RETURNING *;
     `;
   const today = new Date();
   const date = today.toString();
-  const values = [req.body.poster_id, date, req.body.description, req.body.category, req.body.cook_time, req.body.image];
+  const values = [
+    req.body.poster_id,
+    date,
+    req.body.description,
+    req.body.category,
+    req.body.cook_time,
+    req.body.image,
+  ];
 
   db.query(query, values)
     .then((data) => {
@@ -51,8 +58,8 @@ postController.createPost = (req, res, next) => {
     })
     .catch((e) => {
       next({
-        log: 'postController.createPost: ERROR: ' + e,
-        message: 'postController.createPost: ERROR: Database query issue',
+        log: "postController.createPost: ERROR: " + e,
+        message: "postController.createPost: ERROR: Database query issue",
       });
     });
 };
@@ -70,8 +77,8 @@ postController.deletePost = (req, res, next) => {
     })
     .catch((e) => {
       next({
-        log: 'postController.deletePost: ERROR: ' + e,
-        message: 'postController.deletePost: ERROR: Database query issue',
+        log: "postController.deletePost: ERROR: " + e,
+        message: "postController.deletePost: ERROR: Database query issue",
       });
     });
 };
