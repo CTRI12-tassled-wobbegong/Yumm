@@ -1,4 +1,4 @@
-const db = require("../models/dbModel");
+const db = require('../models/dbModel');
 
 const userController = {};
 
@@ -18,8 +18,8 @@ userController.getAllUsers = (req, res, next) => {
     })
     .catch((e) =>
       next({
-        log: "userController.getAllUsers: ERROR: " + e,
-        message: "userController.getAllUsers: ERROR: Database query issue",
+        log: 'userController.getAllUsers: ERROR: ' + e,
+        message: 'userController.getAllUsers: ERROR: Database query issue',
       })
     );
 };
@@ -33,7 +33,7 @@ userController.createUser = (req, res, next) => {
   VALUES ($1, $2, $3, $4)
   RETURNING *;
   `;
-  const values = ["user3", "test1", "bob", "bob@gmail.com"];
+  const values = [req.body.username, req.body.password, req.body.name, req.body.email];
   db.query(query, values)
     .then((data) => {
       res.locals = data.rows[0];
@@ -41,8 +41,8 @@ userController.createUser = (req, res, next) => {
     })
     .catch((e) =>
       next({
-        log: "userController.getAllUsers: ERROR: " + e,
-        message: "userController.getAllUsers: ERROR: Database query issue",
+        log: 'userController.getAllUsers: ERROR: ' + e,
+        message: 'userController.getAllUsers: ERROR: Database query issue',
       })
     );
 };

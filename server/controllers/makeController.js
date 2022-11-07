@@ -1,4 +1,4 @@
-const db = require("../models/dbModel");
+const db = require('../models/dbModel');
 
 const makeController = {};
 
@@ -6,24 +6,59 @@ const makeController = {};
 
 //can't test this
 makeController.createMake = (req, res, next) => {
-  const value = ["3", "1"];
-  const query = `
-        INSERT INTO public.make (post_id, user_id)
-        VALUES ($1, $2)
-        RETURNING *
-    `;
-  db.query(query, values)
+  const values = [req.body.post_id, req.body.maker_id];
+  const query1 = `
+      SELECT * FROM public.make WHERE (post_id) = ($1) AND (maker_id) = ($2);
+      `;
+  db.query(query1, values)
     .then((data) => {
-      console.log(data);
-      res.locals = data.rows;
-      return next();
+      if (data.rows.length === 0) {
+        const query2 = `
+        INSERT INTO public.make (post_id, maker_id)
+        VALUES ($1, $2)
+        RETURNING *;
+          `;
+        db.query(query2, values)
+          .then((data) => {
+            res.locals = data.rows;
+            return next();
+          })
+          .catch((e) =>
+            next({
+              log: 'makeController.createMake: ERROR: ' + e,
+              message: 'makeController.createMake: ERROR: Database query issue',
+            })
+          );
+      } else {
+        res.locals = [];
+        return next();
+      }
     })
-    .catch((err) => {
-      console.log("Error caught in makeController.createMake");
-      return next(err);
-    });
+    .catch((e) =>
+      next({
+        log: 'makeController.createMake: ERROR: ' + e,
+        message: 'makeController.createMake: ERROR: Database query issue',
+      })
+    );
 };
 
 //DELETE MAKE
+makeController.deleteMake = (req, res, next) => {
+  const query = `
+    DELETE FROM public.make WHERE (make_id) = ($1);
+  `;
+  const values = [req.body.make_id];
+  db.query(query, values)
+    .then((data) => {
+      res.locals = data.rowCount;
+      return next();
+    })
+    .catch((e) => {
+      next({
+        log: 'makeController.deleteMake: ERROR: ' + e,
+        message: 'makeController.deleteMake: ERROR: Database query issue',
+      });
+    });
+};
 
 module.exports = makeController;
