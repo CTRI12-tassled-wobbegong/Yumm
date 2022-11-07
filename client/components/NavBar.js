@@ -4,7 +4,10 @@ function NavBar() {
 
   return(
     <div className='navbar'>
-    This is the nav NavBar
+      <input type='text' id='searchBar' placeholder='search'></input>
+      <h4>Food Social</h4>
+      <ul>Inspire</ul>
+      <ul>Messages</ul>
     </div>
   )
 }
