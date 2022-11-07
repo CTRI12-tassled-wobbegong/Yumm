@@ -42,7 +42,7 @@ postController.createPost = (req, res, next) => {
     `;
   const today = new Date();
   const date = today.toString();
-  const values = [1, date, 'food2', 'veggie2', '4 mins', 'fff4'];
+  const values = [req.body.poster_id, date, req.body.description, req.body.category, req.body.cook_time, req.body.image];
 
   db.query(query, values)
     .then((data) => {
@@ -62,7 +62,7 @@ postController.deletePost = (req, res, next) => {
   const query = `
     DELETE FROM public.post WHERE (post_id) = ($1);
   `;
-  const values = [4];
+  const values = [req.body.post_id];
   db.query(query, values)
     .then((data) => {
       res.locals = data.rowCount;

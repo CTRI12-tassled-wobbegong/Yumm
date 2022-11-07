@@ -6,7 +6,7 @@ const makeController = {};
 
 //can't test this
 makeController.createMake = (req, res, next) => {
-  const values = ['5', '1'];
+  const values = [req.body.post_id, req.body.maker_id];
   const query1 = `
       SELECT * FROM public.make WHERE (post_id) = ($1) AND (maker_id) = ($2);
       `;
@@ -47,7 +47,7 @@ makeController.deleteMake = (req, res, next) => {
   const query = `
     DELETE FROM public.make WHERE (make_id) = ($1);
   `;
-  const values = [1];
+  const values = [req.body.make_id];
   db.query(query, values)
     .then((data) => {
       res.locals = data.rowCount;

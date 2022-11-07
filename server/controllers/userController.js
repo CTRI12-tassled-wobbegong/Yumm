@@ -33,7 +33,7 @@ userController.createUser = (req, res, next) => {
   VALUES ($1, $2, $3, $4)
   RETURNING *;
   `;
-  const values = ['user2', 'test2', 'cat2', 'cat2@gmail.com'];
+  const values = [req.body.username, req.body.password, req.body.name, req.body.email];
   db.query(query, values)
     .then((data) => {
       res.locals = data.rows[0];
