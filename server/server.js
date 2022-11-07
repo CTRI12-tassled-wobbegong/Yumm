@@ -8,11 +8,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-const appRouter = require("./routes/appRouter");
+
 const authRouter = require("./routes/authRouter");
-app.use("/api", appRouter);
 app.use("/api", authRouter);
-=======
+
 const apiRouter = require('./routes/apiRouter');
 app.use('/api', apiRouter);
 
@@ -30,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
 );
-=======
+
 app.use('*', (req, res) => res.status(404).send("This is not the page you're looking for..."));
 
 
@@ -38,10 +37,6 @@ app.use('*', (req, res) => res.status(404).send("This is not the page you're loo
 app.use((err, req, res, next) => {
   const defaultErr = {
 
-    log: "Express error handler caught unknown middle error",
-    status: 400,
-    message: { err: "An error occured" },
-=======
     log: 'Express error handler caught unknown middleware error',
     status: 500,
     message: { err: 'An error occured' },
