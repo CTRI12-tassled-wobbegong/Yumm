@@ -5,8 +5,7 @@ function NavBar() {
   return(
     <div className='navbar'>
       <input type='text' id='searchBar' placeholder='search'></input>
-      <h4>Food Social</h4>
-      <ul>Inspire</ul>
+      <ul><h4>YUMM!!</h4></ul>
       <ul>Messages</ul>
     </div>
   )

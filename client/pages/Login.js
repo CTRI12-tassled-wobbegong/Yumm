@@ -9,12 +9,12 @@ function Login(props) {
     const userPassword = document.getElementById("passIn").value;
 
     //TODO: update/confirm end point
-    fetch("/checkforuser", {
+    fetch("/api/user", {
       method: "POST",
       headers: {
         "Content-Type": "Application/JSON",
       },
-      body: JSON.stringify({ userInput, userPassword }),
+      body: JSON.stringify({ username: userInput, password: userPassword }),
     })
       .then((result) => {
         //TODO: do we need to have a response or return anything?
