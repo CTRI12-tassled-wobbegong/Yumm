@@ -4,7 +4,21 @@ const postController = {};
 
 //GET POST FOR FEED
 postController.getAllPosts = (req, res, next) => {
-  const query = `SELECT * FROM public.post`;
+  const query = `
+  SELECT public.post.*, public.user.name AS poster_name, m.*, c.*
+  FROM public.post
+  INNER JOIN public.user ON public.user.user_id = public.post.poster_id
+  LEFT OUTER JOIN
+    (SELECT public.comment.comment_id, public.comment.commenter_id, public.comment.post_id, public.comment.comment, public.user.name AS commenter_name
+    FROM public.comment
+    INNER JOIN public.user ON public.comment.commenter_id = public.user.user_id)
+    c ON c.post_id = public.post.post_id
+  LEFT OUTER JOIN
+    (SELECT public.make.make_id, public.make.maker_id, public.make.post_id, public.user.name AS maker_name
+    FROM public.make
+    INNER JOIN public.user ON public.make.maker_id = public.user.user_id)
+    m ON m.post_id = public.post.post_id;
+  `;
 
   db.query(query)
     .then((data) => {
