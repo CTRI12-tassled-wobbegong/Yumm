@@ -21,7 +21,7 @@ commentController.getAllComments = (req, res, next) => {
 };
 
 commentController.createComment = (req, res, next) => {
-  const values = [5, 1, 'ok'];
+  const values = [req.body.post_id, req.body.commenter_id, req.body.comment];
   const query = `
         INSERT INTO public.comment (post_id, commenter_id, comment)
         VALUES ($1, $2, $3)
@@ -46,7 +46,7 @@ commentController.deleteComment = (req, res, next) => {
   const query = `
     DELETE FROM public.comment WHERE (comment_id) = ($1);
   `;
-  const values = [4];
+  const values = [req.body.comment_id];
   db.query(query, values)
     .then((data) => {
       res.locals = data.rowCount;
