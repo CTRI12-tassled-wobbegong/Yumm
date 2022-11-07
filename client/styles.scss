@@ -292,7 +292,23 @@ USER PAGE
 .form{
   display: block;
   margin-left: 4px;
+  input{
+    border-radius: 10px;
+    width: 240px;
+    padding-left: 5px;
+    height: 30px;
+  }
   button {
     margin-top: 20px;
+    border-radius: 5px;
+    background-color: $accentcool;
+    border: 1px solid darkgray;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
+}
+#descriptionBox{
+  height: 80px;
 }

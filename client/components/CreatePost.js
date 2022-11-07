@@ -24,10 +24,10 @@ function CreatePost(props) {
         'Content-Type': 'Application/JSON'
       },
       body: JSON.stringify({
-        poster_id: 7,
-        description,
-        cook_time,
-        image,
+        poster_id: 1,
+        description: description,
+        cook_time: cook_time,
+        image: image,
         category: 'vegan'
       })
     })
@@ -43,6 +43,7 @@ function CreatePost(props) {
         <label>Description:</label>
         <input
         type='text'
+        id='descriptionBox'
         value={description}
         onChange={(event)=> {setDescription(event.target.value)}}
         name='description'>

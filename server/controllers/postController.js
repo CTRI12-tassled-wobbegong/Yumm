@@ -35,6 +35,7 @@ postController.getAllPosts = (req, res, next) => {
 
 //CREATE POST
 postController.createPost = (req, res, next) => {
+  console.log('attempted')
   const query = `
     INSERT INTO public.post (poster_id, date, description, category, cook_time, image)
     VALUES ($1, $2, $3, $4, $5, $6)

@@ -32,7 +32,7 @@ useEffect(() => {
         category={arrOfObjs[i].category}
         cook_time={arrOfObjs[i].cook_time}
         date={arrOfObjs[i].date}
-        //img={'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20190503-delish-pineapple-baked-salmon-horizontal-ehg-450-1557771120.jpg?crop=1.00xw:0.753xh;0,0.132xh&resize=768'}
+        img={arrOfObjs[i].image}
         />)
     }
     setPosts(resultArr);
