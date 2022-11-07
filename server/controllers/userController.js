@@ -2,18 +2,6 @@ const db = require('../models/dbModel');
 
 const userController = {};
 
-const createErr = (errInfo) => {
-  const { method, type, err } = errInfo;
-  return {
-    log: `controller.${method} ${type}: ERROR : 
-        ${typeof err === 'object' ? JSON.stringify(err) : err}`,
-    message: {
-      err: `Error occured in userController.${method}`,
-    },
-    status: type,
-  };
-};
-
 /**
  * getAllUsers - retrieve all users from the database and stores it into res.locals
  * before moving on to next middleware.
@@ -45,7 +33,7 @@ userController.createUser = (req, res, next) => {
   VALUES ($1, $2, $3, $4)
   RETURNING *;
   `;
-  const values = ['user3', 'test1', 'bob', 'bob@gmail.com'];
+  const values = ['user2', 'test2', 'cat2', 'cat2@gmail.com'];
   db.query(query, values)
     .then((data) => {
       res.locals = data.rows[0];

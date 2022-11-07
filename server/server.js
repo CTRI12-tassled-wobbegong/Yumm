@@ -6,8 +6,8 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const appRouter = require('./routes/appRouter');
-app.use('/api', appRouter);
+const apiRouter = require('./routes/apiRouter');
+app.use('/api', apiRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
@@ -16,13 +16,13 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use((req, res) => res.status(404).send("This is not the page you're looking for..."));
+app.use('*', (req, res) => res.status(404).send("This is not the page you're looking for..."));
 
 // Global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: 'Express error handler caught unknown middle error',
-    status: 400,
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
     message: { err: 'An error occured' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
