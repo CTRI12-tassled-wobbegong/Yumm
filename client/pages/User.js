@@ -1,8 +1,15 @@
 import React from "react";
+import NavBar from '../components/NavBar.js';
+import Post from '../components/Post.js';
+
 
 function User(props) {
   return(
-    <div>In user!</div>
+    <>
+      <NavBar />
+      <Post />
+    </>
+
   )
 }
 
