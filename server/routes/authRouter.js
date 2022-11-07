@@ -8,9 +8,12 @@ var GoogleStrategy = require("passport-google-oauth20");
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env["GOOGLE_CLIENT_ID"],
-      clientSecret: process.env["GOOGLE_CLIENT_SECRET"],
-      callbackURL: "/oauth2/redirect/google",
+      clientID:
+        process.env[
+          "436421365815-q95q0pkgtl6fti6bqh4pl62lnkuts48f.apps.googleusercontent.com"
+        ],
+      clientSecret: process.env["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"],
+      callbackURL: "https://localhost:8080/google-oauth2-callback",
       scope: ["profile"],
       state: true,
     },
