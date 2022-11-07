@@ -37,7 +37,6 @@ function CreatePost(props) {
   // return document.getElementById('end').style.display = 'block';
   return(
     <div className='newPost'  style={{display: display}}>
-      CREATE A POST HERE
       <form className='form'>
 
         <label>Description:</label>
