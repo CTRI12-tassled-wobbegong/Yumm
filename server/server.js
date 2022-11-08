@@ -1,6 +1,6 @@
-require("dotenv").config();
-const express = require("express");
-const path = require("path");
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = 3000;
 // const passport = require("passport");
@@ -8,30 +8,26 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const apiRouter = require("./routes/apiRouter");
-const authRouter = require("./routes/authRouter");
-app.use("/api", apiRouter);
-app.use("/auth", authRouter);
+const apiRouter = require('./routes/apiRouter');
+// const authRouter = require("./routes/authRouter");
+app.use('/api', apiRouter);
+// app.use("/auth", authRouter);
 
-if (process.env.NODE_ENV === "production") {
-  app.use("/build", express.static(path.join(__dirname, "../build")));
-  app.get("/", (req, res) => {
-    return res
-      .status(200)
-      .sendFile(path.join(__dirname, "../build/index.html"));
+if (process.env.NODE_ENV === 'production') {
+  app.use('/build', express.static(path.join(__dirname, '../build')));
+  app.get('/', (req, res) => {
+    return res.status(200).sendFile(path.join(__dirname, '../build/index.html'));
   });
 }
 
-app.use("*", (req, res) =>
-  res.status(404).send("This is not the page you're looking for...")
-);
+app.use('*', (req, res) => res.status(404).send("This is not the page you're looking for..."));
 
 // Global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: "Express error handler caught unknown middleware error",
+    log: 'Express error handler caught unknown middleware error',
     status: 500,
-    message: { err: "An error occured" },
+    message: { err: 'An error occured' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
