@@ -54,6 +54,8 @@ useEffect(() => {
 // }
 // const thingsToPost = createPosts();
 
+
+//changing the display will show/remove the modal
 function displayModal() {
   setModal(!modal);
   console.log('modal changed')
